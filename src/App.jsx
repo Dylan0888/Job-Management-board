@@ -9,7 +9,32 @@ import Columns from './components/Columns';
 function App() {
   
   const [theme , setDark] = useState(false) // Light mode as def
-   const [openNewTask , setOpenNewTask] = useState(true)
+  const [openNewTask , setOpenNewTask] = useState(false)
+
+  const [newTask, setNewTask] = useState({
+    id: crypto.randomUUID(),
+    title: "", 
+    status: "notStarted"
+  })
+
+   const updateList = (e) => {
+      e.preventDefault();
+      if(newTask.title !== ""){
+        setTasks(prevTasks => ([...prevTasks, newTask]))
+        clearNewTask()
+      }
+   }
+
+
+  // to be moved 
+  function clearNewTask(){
+    setNewTask({
+    id: crypto.randomUUID(),
+    title: "", 
+    status: "notStarted"
+  })
+    setOpenNewTask(false)
+  }
 
   const [tasks, setTasks] = useState([
     {id: 1,title: "Clean ass", status: "completed"},
@@ -29,10 +54,14 @@ function App() {
     {name: "notStarted", src:inComplete, list: notStartedList}
   ]
 
+
+
+  //Handle input from input modal to new task hook 
+
   return (
 
     <>
-      {openNewTask && <Modal setOpenNewTask={setOpenNewTask}/>}
+      {openNewTask && <Modal setOpenNewTask={setOpenNewTask} task={newTask} setTask={setNewTask} updateList={updateList}/>}
       <Header theme={theme} setDark={setDark} />
 
       {/* Add Task Button */}
@@ -51,7 +80,7 @@ function App() {
       {/* Job Board */}
       <div className='bg-gray-600/40 h-screen mt-2 p-2 gap-2 grid grid-cols-3 justify-evenly'>
         {columns.map((col) => (
-          <Columns name={col.name} src={col.src} list={col.list}/>
+          <Columns key={col.name} name={col.name} src={col.src} list={col.list}/>
         ))}      
       </div>
      

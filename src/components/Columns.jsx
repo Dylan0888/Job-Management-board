@@ -22,7 +22,7 @@ const Columns = ({name, src, list}) => {
 
 
         {list.map((task) => (
-            <p>{task.title}</p>
+            <p key={task.id}>{task.title}</p>
         ))}
 
 
