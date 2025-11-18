@@ -14,9 +14,9 @@ const Header = ({theme, setDark}) => {
          
         <div className='col-span-1 flex place-items-center justify-center'>
           
-          <button onClick={() => changeTheme()}
+          {/* <button onClick={() => changeTheme()}
               className='p-3 cursor-pointer rounded-lg bg-neutral-300 hover:bg-neutral-400 dark:bg-neutral-900 dark:text-white dark:hover:bg-black/80  duration-150 ease-in-out '>{theme ? <FiMoon /> : <FiSun /> }
-          </button>
+          </button> */}
 
         </div> 
           
