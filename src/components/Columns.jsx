@@ -1,4 +1,8 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import Modal from './Modal'
+import { useTasksContext } from '../context/tasksContext';
+import { useModalContext } from '../context/modalContext';
 
 const Columns = ({name, src, list}) => {
 
@@ -9,9 +13,19 @@ const Columns = ({name, src, list}) => {
         notStarted: "bg-red-500"
     }
 
+    const {tasks, setTasks} = useTasksContext();
+    const {openModal, setOpenModal} = useModalContext();
+    const [selectedTask, setSelectedTask] = useState();
 
+    useEffect(()=>{console.log(selectedTask)},[selectedTask])
+
+    function handleSelectedTask(task){
+        setSelectedTask({...task})
+
+    }
 
   return (
+
     <div className='bg-neutral-200 shadow-md rounded-2xl p-1 '>
 
         {/* column headers */}
@@ -24,6 +38,7 @@ const Columns = ({name, src, list}) => {
        <div className='flex flex-col gap-2'>
             {list.map((task) => (
             <p key={task.id} 
+            onClick={() => handleSelectedTask(task)}
             className='bg-white rounded-2xl shadow-md p-2 text-wrap break-all cursor-pointer hover:outline-none hover:ring-2 hover:ring-blue-400 duration-100 ease-linear'>
                 {task.title}
             </p>

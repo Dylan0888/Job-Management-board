@@ -1,9 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
-// 1. Create the context
 const TasksContext = createContext();
 
-// 2. Provider component
 export function TasksProvider({ children }) {
   const [tasks, setTasks] = useState([
     { id: 1, title: "Clean assassassassassassassassassassassassassass", status: "completed" },

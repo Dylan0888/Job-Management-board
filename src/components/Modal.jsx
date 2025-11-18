@@ -1,16 +1,30 @@
 import { useState } from 'react';
 import { useTasksContext } from '../context/tasksContext';
+import { useModalContext } from '../context/modalContext';
 import { IoMdClose } from "react-icons/io";
 
-const Modal = ({ setOpenNewTask }) => {
+const Modal = () => {
 
-  const { setTasks } = useTasksContext();
+  const {tasks, setTasks } = useTasksContext();
+  const {setOpenModal} = useModalContext();
 
   const [newTask, setNewTask] = useState({
     id: crypto.randomUUID(),
     title: "",
     status: "notStarted"
   });
+
+
+    // when task clicked send info to modal 
+    // when click send id to modal 
+    // filter tasks to get the title and status of matching id 
+    // fill new task hook with data sent 
+    // if aditing task then add delete button and change add task button to save task (tertiatry op)
+    //
+
+
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +36,7 @@ const Modal = ({ setOpenNewTask }) => {
     e.preventDefault();
     if (!newTask.title.trim()) return;
     setTasks(prev => [...prev, newTask]); // add new task 
-    setOpenNewTask(false); // close modal 
+    setOpenModal(false); // close modal 
     setNewTask({ 
       id: crypto.randomUUID(),
       title: "",
@@ -36,7 +50,7 @@ const Modal = ({ setOpenNewTask }) => {
 
         <button
           className="absolute -top-4 -left-4 bg-red-500 cursor-pointer rounded-full w-8 h-8 place-items-center text-lg text-white"
-          onClick={() => setOpenNewTask(false)}
+          onClick={() => setOpenModal(false)}
         >
           <IoMdClose />
         </button>
