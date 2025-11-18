@@ -1,40 +1,26 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import { useTasksContext } from '../context/tasksContext';
 import { useModalContext } from '../context/modalContext';
 import { IoMdClose } from "react-icons/io";
 
-const Modal = ({selectedTask = ""}) => {
+const Modal = () => {
 
   const {tasks, setTasks } = useTasksContext();
-  const {openModal, setOpenModal} = useModalContext();
+  const {closeModal, selectedTask} = useModalContext();
 
   const [newTask, setNewTask] = useState(
       selectedTask ?
       {id: selectedTask.id,
-      title: selectedTask.id,
+      title: selectedTask.title,
       status: selectedTask.status}
       :
       {id: crypto.randomUUID(),
       title: "",
       status: "notStarted"}
-  );
   
+  );
 
-
-
-
-
-
-
-
-
-    // when task clicked send info to modal 
-    // when click send id to modal 
-    // filter tasks to get the title and status of matching id 
-    // fill new task hook with data sent 
-    // if aditing task then add delete button and change add task button to save task (tertiatry op)
-    //
-
+  // useEffect(() => {console.log(selectedTask)},[selectedTask])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +32,7 @@ const Modal = ({selectedTask = ""}) => {
     e.preventDefault();
     if (!newTask.title.trim()) return;
     setTasks(prev => [...prev, newTask]); // add new task 
-    setOpenModal(false); // close modal 
+    closeModal();
     setNewTask({ 
       id: crypto.randomUUID(),
       title: "",
@@ -54,29 +40,17 @@ const Modal = ({selectedTask = ""}) => {
     });
   };
 
-
-
-  
-
-
-
-
-
-
   return (
-    
-    <form className="h-screen w-screen bg-black/30 backdrop-blur-sm fixed flex place-items-center justify-center">
+    <form className="h-screen w-screen bg-black/30 backdrop-blur-sm fixed top-0 left-0 flex place-items-center justify-center">
       <div className="bg-white w-[45%] relative rounded-xl shadow-xl p-6 flex flex-col gap-5">
 
         <button
           className="absolute -top-4 -left-4 bg-red-500 cursor-pointer rounded-full w-8 h-8 place-items-center text-lg text-white"
-          onClick={() => setOpenModal(false)}
-        >
+          onClick={() => closeModal()}>
           <IoMdClose />
         </button>
 
         <h2 className="text-2xl font-semibold text-gray-800">{selectedTask ? "Edit Task" : "Add New Task"}</h2>
-
 
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-gray-700">Task Title</label>
@@ -114,10 +88,7 @@ const Modal = ({selectedTask = ""}) => {
 
           {selectedTask && <button className='grow bg-red-500 rounded-lg text-white'>Delete Me</button>}
         </div>
-       
-
-
-
+      
       </div>
     </form>
   );

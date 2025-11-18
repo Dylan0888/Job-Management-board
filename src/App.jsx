@@ -26,7 +26,7 @@ function App() {
 
   return (    
   <>
-      {openModal && <Modal/>}
+      {openModal && <Modal selectedTask=''/>}
       <Header theme={theme} setDark={setDark} />
 
       {/* Add Task Button */}
@@ -35,7 +35,7 @@ function App() {
       {/* Job Board */}
       <div className='  mt-2 p-2 gap-2 grid grid-cols-3 justify-evenly'>
         {columns.map((col) => (
-          <Columns key={col.name} name={col.name} src={col.src} list={col.list}/>
+          <Columns key={col.name} name={col.name} src={col.src} list={col.list} />
         ))}      
       </div>
     </>

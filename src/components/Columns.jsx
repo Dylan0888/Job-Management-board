@@ -1,7 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
 import Modal from './Modal'
-import { useTasksContext } from '../context/tasksContext';
 import { useModalContext } from '../context/modalContext';
 
 const Columns = ({name, src, list}) => {
@@ -12,22 +10,12 @@ const Columns = ({name, src, list}) => {
         inProgress: "bg-orange-400",
         notStarted: "bg-red-500"
     }
-
-    const {tasks, setTasks} = useTasksContext();
-    const {openModal, setOpenModal} = useModalContext();
-    const [selectedTask, setSelectedTask] = useState();
-
-    useEffect(()=>{console.log(selectedTask)},[selectedTask])
-
-    function handleSelectedTask(task){
-        setSelectedTask({...task})
-
-    }
-
+    // Opens modal and assigns the selected task 
+    const {openTaskModal} = useModalContext();
   return (
-
+<>
     <div className='bg-neutral-200 shadow-md rounded-2xl p-1 '>
-
+        
         {/* column headers */}
         <header className={`${styles[name]} rounded-2xl shadow-md p-1 flex flex-col place-items-center mb-2`}>
             <h1 className='text-lg capitalize font-bold text-white'>{name}</h1>
@@ -38,13 +26,14 @@ const Columns = ({name, src, list}) => {
        <div className='flex flex-col gap-2'>
             {list.map((task) => (
             <p key={task.id} 
-            onClick={() => handleSelectedTask(task)}
+            onClick={() => openTaskModal(task)}
             className='bg-white rounded-2xl shadow-md p-2 text-wrap break-all cursor-pointer hover:outline-none hover:ring-2 hover:ring-blue-400 duration-100 ease-linear'>
                 {task.title}
             </p>
         ))}
        </div>
     </div>
+</>
   )
 }
 
