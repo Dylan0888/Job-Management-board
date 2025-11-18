@@ -81,12 +81,12 @@ const Modal = () => {
         <div className='flex mt-2 gap-2'>
            <button
           onClick={updateList}
-          className="bg-blue-600 text-white py-2 rounded-lg grow"
+          className="bg-blue-600 text-white py-2 rounded-lg grow font-bold"
         >
           {selectedTask ? "Edit Task" : "Add Task"}
         </button>
 
-          {selectedTask && <button className='grow bg-red-500 rounded-lg text-white'>Delete Me</button>}
+          {selectedTask && <button className='grow bg-red-500 rounded-lg text-white font-bold '>Delete Me</button>}
         </div>
       
       </div>
