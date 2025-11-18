@@ -20,8 +20,8 @@ const Header = ({theme, setDark}) => {
 
         </div> 
           
-          <div className='bg-blue-500 col-span-3'> Task Manager 9000.1</div>
-          <div className='bg-blue-500'></div>
+          <div className='col-span-3 text-4xl font-extrabold text-orange-700 text-shadow-lg tracking-wide text-center'> Task Manager 9000.1</div>
+          <div className=''></div>
       </header>
   )
 }
