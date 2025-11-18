@@ -9,6 +9,7 @@ import Columns from './components/Columns';
 function App() {
   
   const [theme , setDark] = useState(false) // Light mode as def
+   const [openNewTask , setOpenNewTask] = useState(true)
 
   const [tasks, setTasks] = useState([
     {id: 1,title: "Clean ass", status: "completed"},
@@ -28,17 +29,6 @@ function App() {
     {name: "notStarted", src:inComplete, list: notStartedList}
   ]
 
-
-
-  const [openNewTask , setOpenNewTask] = useState(true)
-
-  
-
-  
-
-
-
-  
   return (
 
     <>
