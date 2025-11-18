@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTasksContext } from './context/tasksContext';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import completed from './assets/imgs/checked.png'
@@ -8,25 +9,12 @@ import Columns from './components/Columns';
 
 function App() {
   
+  const {completedList, inProgressList, notStartedList} = useTasksContext()
+
+
   const [theme , setDark] = useState(false) // Light mode as def
   const [openNewTask , setOpenNewTask] = useState(false)
 
-  const [newTask, setNewTask] = useState({
-    id: crypto.randomUUID(),
-    title: "", 
-    status: "notStarted"
-  })
-
-  const [tasks, setTasks] = useState([
-    {id: 1,title: "Clean assassassassassassassassassassassassassass", status: "completed"},
-    {id: 2,title: "Brush teeth", status: "inProgress"},
-    {id: 3,title: "sort Ketwig", status: "notStarted"}
-  ]);
-
-  // Column filters
-  const completedList = tasks.filter((task) => task.status === "completed");
-  const inProgressList = tasks.filter(task => task.status === "inProgress");    
-  const notStartedList = tasks.filter(task => task.status === "notStarted");
 
 
   // Array of columns to render out 
@@ -36,30 +24,10 @@ function App() {
     {name: "notStarted", src:inComplete, list: notStartedList}
   ]
 
-
-  const updateList = (e) => {
-    e.preventDefault();
-    if(newTask.title !== ""){
-      setTasks(prevTasks => ([...prevTasks, newTask]))
-      clearNewTask()
-      }
-   }
-
-  // Clears modal form 
-  function clearNewTask(){
-    setNewTask({
-    id: crypto.randomUUID(),
-    title: "", 
-    status: "notStarted"
-  })
-    setOpenNewTask(false)
-  }
-
-
   return (
 
     <>
-      {openNewTask && <Modal setOpenNewTask={setOpenNewTask} task={newTask} setTask={setNewTask} updateList={updateList}/>}
+      {openNewTask && <Modal setOpenNewTask={setOpenNewTask} />}
       <Header theme={theme} setDark={setDark} />
 
       {/* Add Task Button */}
@@ -88,4 +56,3 @@ export default App
 
 
 
-/// from lapop 
