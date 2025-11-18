@@ -3,16 +3,29 @@ import { useTasksContext } from '../context/tasksContext';
 import { useModalContext } from '../context/modalContext';
 import { IoMdClose } from "react-icons/io";
 
-const Modal = () => {
+const Modal = ({selectedTask = ""}) => {
 
   const {tasks, setTasks } = useTasksContext();
-  const {setOpenModal} = useModalContext();
+  const {openModal, setOpenModal} = useModalContext();
 
-  const [newTask, setNewTask] = useState({
-    id: crypto.randomUUID(),
-    title: "",
-    status: "notStarted"
-  });
+  const [newTask, setNewTask] = useState(
+      selectedTask ?
+      {id: selectedTask.id,
+      title: selectedTask.id,
+      status: selectedTask.status}
+      :
+      {id: crypto.randomUUID(),
+      title: "",
+      status: "notStarted"}
+  );
+  
+
+
+
+
+
+
+
 
 
     // when task clicked send info to modal 
@@ -21,9 +34,6 @@ const Modal = () => {
     // fill new task hook with data sent 
     // if aditing task then add delete button and change add task button to save task (tertiatry op)
     //
-
-
-
 
 
   const handleChange = (e) => {
@@ -44,7 +54,17 @@ const Modal = () => {
     });
   };
 
+
+
+  
+
+
+
+
+
+
   return (
+    
     <form className="h-screen w-screen bg-black/30 backdrop-blur-sm fixed flex place-items-center justify-center">
       <div className="bg-white w-[45%] relative rounded-xl shadow-xl p-6 flex flex-col gap-5">
 
@@ -55,7 +75,7 @@ const Modal = () => {
           <IoMdClose />
         </button>
 
-        <h2 className="text-2xl font-semibold text-gray-800">Add New Task</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">{selectedTask ? "Edit Task" : "Add New Task"}</h2>
 
 
         <div className="flex flex-col gap-1">
@@ -84,12 +104,19 @@ const Modal = () => {
           </select>
         </div>
 
-        <button
+        <div className='flex mt-2 gap-2'>
+           <button
           onClick={updateList}
-          className="mt-2 bg-blue-600 text-white py-2 rounded-lg"
+          className="bg-blue-600 text-white py-2 rounded-lg grow"
         >
-          Add Task
+          {selectedTask ? "Edit Task" : "Add Task"}
         </button>
+
+          {selectedTask && <button className='grow bg-red-500 rounded-lg text-white'>Delete Me</button>}
+        </div>
+       
+
+
 
       </div>
     </form>
