@@ -17,34 +17,16 @@ function App() {
     status: "notStarted"
   })
 
-   const updateList = (e) => {
-      e.preventDefault();
-      if(newTask.title !== ""){
-        setTasks(prevTasks => ([...prevTasks, newTask]))
-        clearNewTask()
-      }
-   }
-
-
-  // to be moved 
-  function clearNewTask(){
-    setNewTask({
-    id: crypto.randomUUID(),
-    title: "", 
-    status: "notStarted"
-  })
-    setOpenNewTask(false)
-  }
-
   const [tasks, setTasks] = useState([
-    {id: 1,title: "Clean ass", status: "completed"},
+    {id: 1,title: "Clean assassassassassassassassassassassassassass", status: "completed"},
     {id: 2,title: "Brush teeth", status: "inProgress"},
     {id: 3,title: "sort Ketwig", status: "notStarted"}
   ]);
 
-    const completedList = tasks.filter((task) => task.status === "completed");
-    const inProgressList = tasks.filter(task => task.status === "inProgress");
-    const notStartedList = tasks.filter(task => task.status === "notStarted");
+  // Column filters
+  const completedList = tasks.filter((task) => task.status === "completed");
+  const inProgressList = tasks.filter(task => task.status === "inProgress");    
+  const notStartedList = tasks.filter(task => task.status === "notStarted");
 
 
   // Array of columns to render out 
@@ -55,8 +37,24 @@ function App() {
   ]
 
 
+  const updateList = (e) => {
+    e.preventDefault();
+    if(newTask.title !== ""){
+      setTasks(prevTasks => ([...prevTasks, newTask]))
+      clearNewTask()
+      }
+   }
 
-  //Handle input from input modal to new task hook 
+  // Clears modal form 
+  function clearNewTask(){
+    setNewTask({
+    id: crypto.randomUUID(),
+    title: "", 
+    status: "notStarted"
+  })
+    setOpenNewTask(false)
+  }
+
 
   return (
 
@@ -73,12 +71,9 @@ function App() {
       </div>
 
 
-
-
-
     
       {/* Job Board */}
-      <div className='bg-gray-600/40 h-screen mt-2 p-2 gap-2 grid grid-cols-3 justify-evenly'>
+      <div className='  mt-2 p-2 gap-2 grid grid-cols-3 justify-evenly'>
         {columns.map((col) => (
           <Columns key={col.name} name={col.name} src={col.src} list={col.list}/>
         ))}      

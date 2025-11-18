@@ -10,7 +10,7 @@ const Header = ({theme, setDark}) => {
 
 
   return (
-    <header className=' bg-neutral-800 grid grid-cols-5 gap-2.5 p-2'>
+    <header className=' bg-neutral-800 grid grid-cols-5 gap-2.5 p-2 shadow-2xl'>
          
         <div className='col-span-1 flex place-items-center justify-center'>
           
