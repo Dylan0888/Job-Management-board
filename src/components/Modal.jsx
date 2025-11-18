@@ -95,3 +95,10 @@ const Modal = () => {
 };
 
 export default Modal;
+
+
+
+// add styles to the edit task buttons 
+// add functionality to buttons 
+// create compnents and clean up code 
+// add dark mode functionality 
