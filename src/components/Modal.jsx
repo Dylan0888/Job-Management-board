@@ -16,12 +16,10 @@ const Modal = () => {
       status: selectedTask.status}
       :
       {id: crypto.randomUUID(),
-      title: "",
+      title: "test",
       status: "notStarted"}
   
   );
-
-  // useEffect(() => {console.log(selectedTask)},[selectedTask])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +27,7 @@ const Modal = () => {
   };
 
   // Adds the new task to the existing list of tasks 
-  const updateList = (e) => {
+  const addTask = (e) => {
     e.preventDefault();
     if (!newTask.title.trim()) return;
     setTasks(prev => [...prev, newTask]); // add new task 
@@ -40,6 +38,17 @@ const Modal = () => {
       status: "notStarted"
     });
   };
+
+  const editTask = () => {
+    if (!newTask.title.trim()) return;
+    setTasks(prevTasks => prevTasks.map((task) => task.id === newTask.id ? newTask :task)) //Maps the matching task id to the edited task
+     closeModal()
+     setNewTask({ 
+      id: crypto.randomUUID(),
+      title: "",
+      status: "notStarted"
+    });
+  }
 
   const removeTask = () => {
     console.log("rem")
@@ -84,9 +93,9 @@ const Modal = () => {
         </div>
 
         <div className='flex mt-2 gap-2'> 
-          <ModalBtn btnFunc={updateList} type={selectedTask ? "edit" : "add"}/>
+          <ModalBtn btnFunc={selectedTask ? editTask : addTask} type={selectedTask ? "edit" : "add"}/>
 
-          <ModalBtn btnFunc={removeTask} type={"del"}/>
+          {selectedTask && <ModalBtn btnFunc={removeTask} type={"del"}/>}
         </div>
       
       </div>
