@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { useTasksContext } from '../context/tasksContext';
 import { useModalContext } from '../context/modalContext';
+import ModalBtn from './ModalBtn';
 import { IoMdClose } from "react-icons/io";
 
 const Modal = () => {
@@ -40,6 +41,10 @@ const Modal = () => {
     });
   };
 
+  const removeTask = () => {
+    console.log("rem")
+  }
+
   return (
     <form className="h-screen w-screen bg-black/30 backdrop-blur-sm fixed top-0 left-0 flex place-items-center justify-center">
       <div className="bg-white w-[45%] relative rounded-xl shadow-xl p-6 flex flex-col gap-5">
@@ -78,15 +83,10 @@ const Modal = () => {
           </select>
         </div>
 
-        <div className='flex mt-2 gap-2'>
-           <button
-          onClick={updateList}
-          className="bg-blue-600 text-white py-2 rounded-lg grow font-bold"
-        >
-          {selectedTask ? "Edit Task" : "Add Task"}
-        </button>
+        <div className='flex mt-2 gap-2'> 
+          <ModalBtn btnFunc={updateList} type={selectedTask ? "edit" : "add"}/>
 
-          {selectedTask && <button className='grow bg-red-500 rounded-lg text-white font-bold '>Delete Me</button>}
+          <ModalBtn btnFunc={removeTask} type={"del"}/>
         </div>
       
       </div>
