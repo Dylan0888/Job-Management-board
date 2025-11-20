@@ -1,18 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const TasksContext = createContext();
 
 export function TasksProvider({ children }) {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: "Clean assassassassassassassassassassassassassass", status: "completed" },
-    { id: 2, title: "Brush teeth", status: "inProgress" },
-    { id: 3, title: "Sort Ketwig", status: "notStarted" }
-  ]);
+const [tasks, setTasks] = useState(()=> {
+    const savedTask = localStorage.getItem("task"); //stored saved tasks
+    return savedTask ? JSON.parse(savedTask) : []; // return saved else empty list
+  });
 
   // filtered lists
   const completedList = tasks.filter(t => t.status === "completed");
   const inProgressList = tasks.filter(t => t.status === "inProgress");
   const notStartedList = tasks.filter(t => t.status === "notStarted");
+
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(tasks))
+  },[tasks])
+
 
   return (
     <TasksContext.Provider
