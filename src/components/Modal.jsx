@@ -2,11 +2,12 @@ import { useState} from 'react';
 import { useTasksContext } from '../context/tasksContext';
 import { useModalContext } from '../context/modalContext';
 import ModalBtn from './ModalBtn';
+import ModalInputBox from './ModalInputBox';
 import { IoMdClose } from "react-icons/io";
 
 const Modal = () => {
 
-  const {tasks, setTasks } = useTasksContext();
+  const {setTasks } = useTasksContext();
   const {closeModal, selectedTask} = useModalContext();
 
   const [newTask, setNewTask] = useState(
@@ -67,31 +68,9 @@ const Modal = () => {
 
         <h2 className="text-2xl font-semibold text-gray-800">{selectedTask ? "Edit Task" : "Add New Task"}</h2>
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-700">Task Title</label>
-          <input
-            type="text"
-            name="title"
-            value={newTask.title}
-            onChange={handleChange}
-            placeholder="Enter task..."
-            className="w-full border rounded-lg px-3 py-2"
-          />
-        </div>
+        <ModalInputBox inputName={"title"} newTask={newTask} handleChange={handleChange} />
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-700">Status</label>
-          <select
-            name="status"
-            value={newTask.status} 
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2"
-          >
-            <option value="notStarted">Not Started</option>
-            <option value="inProgress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-        </div>
+        <ModalInputBox inputName={"status"} newTask={newTask} handleChange={handleChange} />
 
         <div className='flex mt-2 gap-2'> 
           <ModalBtn btnFunc={selectedTask ? editTask : addTask} type={selectedTask ? "edit" : "add"}/>
