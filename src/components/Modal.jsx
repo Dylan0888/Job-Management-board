@@ -51,7 +51,8 @@ const Modal = () => {
   }
 
   const removeTask = () => {
-    console.log("rem")
+    setTasks(tasks => tasks.filter((prevTask)=> prevTask.id !== newTask.id))
+    closeModal()
   }
 
   return (
