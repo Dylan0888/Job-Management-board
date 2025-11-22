@@ -4,6 +4,7 @@ import { useModalContext } from '../context/modalContext';
 import ModalBtn from './ModalBtn';
 import ModalInputBox from './ModalInputBox';
 import { IoMdClose } from "react-icons/io";
+import toast from 'react-hot-toast';
 
 const Modal = () => {
 
@@ -30,9 +31,13 @@ const Modal = () => {
   // Adds the new task to the existing list of tasks 
   const addTask = (e) => {
     e.preventDefault();
-    if (!newTask.title.trim()) return;
+    if (!newTask.title.trim()) {
+      toast.error("Please Provide a Task Name!")
+      return;
+    }
     setTasks(prev => [...prev, newTask]); // add new task 
     closeModal();
+    toast.success("Added Task!")
     setNewTask({ 
       id: crypto.randomUUID(),
       title: "",
@@ -41,7 +46,10 @@ const Modal = () => {
   };
 
   const editTask = () => {
-    if (!newTask.title.trim()) return;
+    if (!newTask.title.trim()) {
+      toast.error("Please Provide a Task Name!")
+      return;
+    }
     setTasks(prevTasks => prevTasks.map((task) => task.id === newTask.id ? newTask :task)) //Maps the matching task id to the edited task
      closeModal()
      setNewTask({ 
@@ -49,11 +57,14 @@ const Modal = () => {
       title: "",
       status: "notStarted"
     });
+    toast.success("Successfully Edited Task!")
   }
 
   const removeTask = () => {
     setTasks(tasks => tasks.filter((prevTask)=> prevTask.id !== newTask.id))
+    toast.success("Successfully Removed Task!")
     closeModal()
+    toast
   }
 
   return (

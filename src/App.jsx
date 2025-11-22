@@ -8,6 +8,7 @@ import inComplete from './assets/imgs/remove.png'
 import inProgress from './assets/imgs/work-in-progress.png'
 import Columns from './components/Columns';
 import AddTaskBtn from './components/AddTaskBtn';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   
@@ -38,6 +39,8 @@ function App() {
           <Columns key={col.name} name={col.name} src={col.src} list={col.list} />
         ))}      
       </div>
+
+      <Toaster/>
     </>
   )
 }
