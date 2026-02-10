@@ -3,6 +3,8 @@ A task and workflow management web app built using React that allows a user to c
 
 ## Live Preview 
 [job-management-board.vercel.app](https://job-management-board.vercel.app/)
+https://job-management-board-37icrhp21-dylans-projects-44c1cadc.vercel.app/
+
 
 ## Features 
 - Create and manage job/task entries
