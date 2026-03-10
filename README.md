@@ -5,6 +5,11 @@ A task and workflow management web app built using React that allows a user to c
 ![App Preview](src/assets/githubImgs/TaskManagerHome.png)
 [job-management-board.vercel.app](https://job-management-board.vercel.app/)
 
+### Modal Usage
+The modal can be used to both create tasks and update them depending on a user's interaction. 
+![Create Task Modal](src/assets/githubImgs/AddTaskModal.png)
+
+![Edit Task Modal](src/assets/githubImgs/EditTaskModal.png)
 
 ## Features 
 - Create and manage job/task entries
