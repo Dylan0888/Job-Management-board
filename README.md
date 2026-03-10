@@ -25,5 +25,10 @@ A task and workflow management web app built using React that allows a user to c
 - managing state across components and task interactions
 - Implementing dynamic UI updates for moving tasks between stages
 
+## Project Structure 
 
-THIS PROJECT IS OPEN SOURCE  
+
+## Liscense 
+
+MIT License - Copyright (c) 2026 Dylan Jones
+
