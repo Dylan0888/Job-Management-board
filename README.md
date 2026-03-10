@@ -26,7 +26,47 @@ A task and workflow management web app built using React that allows a user to c
 - Implementing dynamic UI updates for moving tasks between stages
 
 ## Project Structure 
-
+```
+Job-Management-board/
+├── public/
+├── src/
+│      ├── assets/
+│      │        ├── githubImgs/ (do not delete)
+│      │        │         ├── AddTaskModal.png
+│      │        │         ├── EditTaskModal.png
+│      │        │         └── TaskManagerHome.png
+│      │        │
+│      │        └── imgs/ (category images)
+│      │               ├── checked.png
+│      │               ├── remove.png
+│      │               └── work-in-progress.png
+│      │
+│      ├── components/ 
+│      │         ├── AddTaskBtn.jsx
+│      │         ├── Columns.jsx
+│      │         ├── Header.jsx
+│      │         ├── Modal.jsx
+│      │         ├── ModalBtn.jsx
+│      │         └── ModalInputBox.jsx
+│      │
+│      ├── context/ 
+│      │         ├── AppProvider.jsx  
+│      │         ├── modalContext.jsx
+│      │         └── tasksContext.jsx
+│      │
+│      ├── App.jsx
+│      ├── index.css
+│      └── main.jsx
+│      
+├── .gitignore      
+├── LISCENSE
+├── README.md      
+├── eslint.config.js      
+├── index.html      
+├── package-lock.json     
+├── package.json      
+└── vite.congif.js
+```
 
 ## Liscense 
 
